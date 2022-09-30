@@ -1,10 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Link } from "react-router-dom";
-import { Routes, Route } from 'react-router-dom';
 // import { Link } from "react-router-dom";
 // import { Icon } from "@iconify/react";
-import SearchBar from "../searchBar/searchBar";
+// import SearchBar from "../searchBar/searchBar";
 import "./navBar.css";
 
 const NavBar = () => {
@@ -75,20 +74,20 @@ const NavBar = () => {
                 <Link to={'/home'} class="nav-link text-white" href="#!">Home</Link>
               </li>
               <li class="nav-item p-2">
-                <Link to={'/home/abaut'}
+                <Link to={'/about'}
                   class="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0">
                   Team
                 </Link>
               </li>
               <li class="nav-item p-2">
-                <Link class="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0" href="#!">
+                <Link to={"/history"} class="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0">
                   History
                 </Link>
               </li>
             </ul>
           </div>
           <div class="flex items-center relative">
-            <Link to='/' class="flex items-center hover:text-gray-200 mr-5">
+            <Link to='/cart' class="flex items-center hover:text-gray-200 mr-5">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
@@ -121,7 +120,7 @@ const NavBar = () => {
                 aria-labelledby="dropdownMenuButton2"
               >
                 <li>
-                  <Link to='/home/profile'
+                  <Link to='/profile'
                     class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100">
                     Profile
                   </Link>
@@ -136,9 +135,7 @@ const NavBar = () => {
           </div>
         </div>
       </nav>
-      <Routes>
-        <Route path='/home*' element={<SearchBar />} />
-      </Routes>
+      
     </div>
   );
 };

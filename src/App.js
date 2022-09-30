@@ -6,6 +6,11 @@ import SignIn from './components/user/signIn/signIn';
 import { Routes, Route } from 'react-router-dom';
 import Details from './components/user/details/details';
 import Landing from './components/user/Landing/Landing';
+import About from './components/user/about/about';
+import Profile from './components/user/profile/profile';
+import Favorites from './components/user/favorites/fovorites';
+import History from './components/user/history/history';
+import Cart from './components/user/cart/cart';
 
 function App() {
   return (
@@ -15,9 +20,14 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Landing />} />
           <Route exact path='/home' element={<Home />} />
+          <Route exact path='/about' element={<About/>} />
+          <Route exact path='/favorites' element={<Favorites/>} />
+          <Route exact path='/profile' element={<Profile/>} />
+          <Route exact path='/history' element={<History/>} />
+          <Route exact path='/cart' element={<Cart/>} />
+          <Route exact path='/details' element={<Details />} />
           <Route exact path='/home/log-in' element={<LogIn />} />
           <Route exact path='/home/sign-in' element={<SignIn />} />
-          <Route exact path='/home/details' element={<Details />} />
         </Routes>
       </header>
     </div>
