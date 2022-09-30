@@ -1,20 +1,18 @@
-import axios from 'axios';
-
+import axios from "axios";
+export const GET_PRODUCTS = "GET_PRODUCTS";
 
 export const getProducts = () => {
-    return async (dispatch) => {
-        const products = await axios.get('http://localhost:3001/products');
-        dispatch({
-            type: "GET_PRODUCTS",
-            payload: products.data
-        });
+  return async (dispatch) => {
+    try {
+      const products = await axios.get(
+        "https://backpf-production.up.railway.app/product/all"
+      );
+      dispatch({
+        type: GET_PRODUCTS,
+        payload: products.data,
+      });
+    } catch (error) {
+      console.log(error);
     }
+  };
 };
-
-export const createProducts = (payload) => {
-    return async () => {
-        const products = await axios.post('http://localhost:3001/products', payload);
-        return products;
-    }
-}
-
