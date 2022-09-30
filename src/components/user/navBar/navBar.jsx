@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Routes, Route } from 'react-router-dom';
 // import { Link } from "react-router-dom";
 // import { Icon } from "@iconify/react";
-import SearchBar from "../searchBar/searchBar";
+import SearchBar from "../searchBar/searchBar.jsx";
 import "./navBar.css";
 
 const NavBar = () => {
