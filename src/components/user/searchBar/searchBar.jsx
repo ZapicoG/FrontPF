@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductsName, resetFilter, searchProduct } from "../../../redux/action";
+import { getBrandAndModels, getProductsName, resetFilter, searchProduct } from "../../../redux/action";
 
 const SearchBar = () => {
 
@@ -12,6 +12,7 @@ const SearchBar = () => {
 
     useEffect(() => {
       dispatch(getProductsName())
+      dispatch(getBrandAndModels())
   }, [dispatch])
   // console.log(allProductsName, "SearchBar");
 
