@@ -1,14 +1,18 @@
 import axios from "axios";
+
+export const MULTI_ACTION = "MULTI_ACTION";
+
 export const GET_PRODUCTS_NAME = "GET_PRODUCTS_NAME";
 export const DETAIL_PRODUCT = "DETAIL_PRODUCT";
 export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
+
+export const RESET_FILTER = "RESET_FILTER";
+export const UPDATE_FILTER = "UPDATE_FILTER";
+export const FETCH_FILTERED = "FETCH_FILTERED"; 
+
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const ADD_CATEGORIES = "ADD_CATEGORIES"
 export const CLEAR_CATEGORIES = "CLEAR_CATEGORIES";
-export const UPDATE_FILTER = "UPDATE_FILTER";
-export const FILTER_RESET = "FILTER_RESET";
-export const FETCH_FILTERED = "FETCH_FILTERED"; 
-export const MULTI_ACTION = "MULTI_ACTION";
 
 
 
@@ -41,14 +45,14 @@ export const searchProduct = (name) => {
         dispatch({
           type: MULTI_ACTION,
           payload: {actions: [
-            {type: FILTER_RESET, payload: null},
+            {type: RESET_FILTER, payload: null},
             {type: UPDATE_FILTER, payload: {search: name}}
         ]}
         });
     };
   };
 
-  
+
 
 export const updateFilter = (filter) => {
   return async (dispatch) => {
@@ -57,6 +61,13 @@ export const updateFilter = (filter) => {
       payload: filter
     })
   }
+}
+
+export const resetFilter = () => {
+  dispatch({
+    type: RESET_FILTER,
+    payload: null
+  })
 }
 
  

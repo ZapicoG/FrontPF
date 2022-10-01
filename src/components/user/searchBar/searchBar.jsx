@@ -7,7 +7,7 @@ const SearchBar = () => {
 
   const [search, setSearch] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const product = useSelector(state => state.allProduct);
+  const product = useSelector(state => state.allProductsName);
     const dispatch = useDispatch();
 
     useEffect(() => {

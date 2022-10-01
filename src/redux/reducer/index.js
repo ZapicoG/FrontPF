@@ -1,9 +1,9 @@
 
-import { DETAIL_PRODUCT, GET_PRODUCTS_NAME, MULTI_ACTION, SEARCH_PRODUCT } from "../action";
+import { CLEAR_CATEGORIES, DETAIL_PRODUCT, FETCH_CATEGORIES, GET_PRODUCTS_NAME, MULTI_ACTION, RESET_FILTER, SEARCH_PRODUCT, UPDATE_FILTER } from "../action";
 
 const initialState = {
     products: [],
-    allProduct:[],
+    allProductsName:[],
     detail: {},
     categories: [],
     brand: [],
@@ -23,31 +23,48 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type){
+
         case MULTI_ACTION:
             const results = action.payload.actions.map(a => store.dispatch(a))
             return results;
+
+//Filter
+        case RESET_FILTER:
+            return {
+                ...state,
+                filter: initialState.filter
+            };
+        case UPDATE_FILTER:
+            return {
+                ...state,
+                filter: {...state.filter, ...action.payload}
+            }
+        
+//Products
         case GET_PRODUCTS_NAME:
             return{
                 ...state,
-                products: action.payload,
-                allProduct: action.payload
+                allProductsName: action.payload
             }
         case DETAIL_PRODUCT:
             return{
                 ...state,
                 detail: action.payload
             }
+
         case SEARCH_PRODUCT:
             return{
                 ...state,
-                products:action.payload
+                products: action.payload
             }
-        case "FETCH_CATEGORIES":
+
+//Categories            
+        case FETCH_CATEGORIES:
             return{
                 ...state,
                 categories: action.payload
             }
-        case "CLEAR_CATEGORIES":
+        case CLEAR_CATEGORIES:
             return{
                 ...state,
                 categories: action.payload
