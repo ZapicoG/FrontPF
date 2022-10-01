@@ -135,7 +135,7 @@ export function clearCategories() {
 
 export const getBrandAndModels = () => {
   return async (dispatch) => {
-    const brandAndModels = await axios.get("https://backpf-production.up.railway.app/allBrandAndModel");
+    const brandAndModels = await axios.get("https://backpf-production.up.railway.app/product/allBrandAndModel");
     dispatch({
       type: FETCH_BRANDS_MODELS,
       payload: brandAndModels
