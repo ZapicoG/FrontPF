@@ -1,18 +1,16 @@
 import React from 'react'
-const categorys = [ 
+import { useDispatch } from 'react-redux'
+import { resetFilter, updateFilter } from '../../../redux/action';
+const categories = [ 
     {
         id: 1,
         name: 'Computadores',
         imageSrc: "https://todotintasysuministros.com/assets/media/computador/hg/hg01081.png?u=1654958571",
-        href: '/',
-
     },
     {
         id: 2,
-        name: 'Celulares',
+        name: 'Celularas',
         imageSrc: "https://jumbocolombiaio.vtexassets.com/arquivos/ids/298615-800-600?v=637837572184630000&width=800&height=600&aspect=true",
-        href: '#',
-
     },
     // {
     //     id: 3,
@@ -32,6 +30,9 @@ const categorys = [
 ]
 
 export default function Categories() {
+  const dispatch = useDispatch();
+
+
   return (
     <div className="bg-gray-100">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -39,7 +40,7 @@ export default function Categories() {
           <h2 className="text-2xl font-bold text-gray-900">Categorias</h2>
 
           <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
-            {categorys.map((callout) => (
+            {categories.map((callout) => (
               <div key={callout.name} className="group relative">
                 <div className="relative h-80 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
                   <img
@@ -49,7 +50,10 @@ export default function Categories() {
                   />
                 </div>
                 <h3 className="mt-6 text-sm text-gray-500">
-                  <a href={callout.href}>
+                  <a href="#" onClick={()=>{
+                    dispatch(resetFilter()),
+                    dispatch(updateFilter({category: callout.name}))
+                    }}>
                     <span className="absolute inset-0" />
                     {callout.name}
                   </a>
