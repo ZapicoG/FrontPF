@@ -8,7 +8,7 @@ import s from "./home.module.css";
 
 const Home = () => {
 
-    const product = useSelector(state => state.products);
+    const products = useSelector(state => state.products);
     const filter = useSelector(state => state.filter)
     const dispatch = useDispatch();
 
@@ -21,14 +21,14 @@ const Home = () => {
         console.log(filter)
         dispatch(getProductsFiltered(filter))
     },[filter])
-    console.log(product)
+    console.log(products)
     return ( 
     <>
         <div>
             <SearchBar/>
         </div>
         <div className={s.container}>
-            <Products product={product}/>
+            <Products product={products}/>
         </div>
     </>
      );
