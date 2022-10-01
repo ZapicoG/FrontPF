@@ -46,16 +46,8 @@ export const getProductsFiltered = (filter) => {
     console.log(filter, "Actions")
     console.log(category, brand, model, search, minPrice, maxPrice, order, amount, page, "Actions")
     const products = await axios.get(
-      `https://backpf-production.up.railway.app/product/filterBy
-      ?category=${category}
-      &brand=${brand}
-      &model=${model}
-      &search=${search}
-      &minPrice=${minPrice}
-      &maxPrice=${maxPrice}
-      &order=${order}
-      &amount=${amount}
-      &page=${page}`
+      `https://backpf-production.up.railway.app/product/filterBy`,
+      {params: {filter}}
       );
     dispatch({
       type: GET_PRODUCTS_FILTERED,
