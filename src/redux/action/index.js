@@ -61,7 +61,7 @@ export const searchProduct = (name) => {
     return async (dispatch) => {
         dispatch({
           type: UPDATE_FILTER,
-          payload: null
+          payload: {search: name}
         });
     };
   };
