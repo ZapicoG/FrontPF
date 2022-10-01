@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const MULTI_ACTION = "MULTI_ACTION";
+// export const MULTI_ACTION = "MULTI_ACTION";
 
 export const GET_PRODUCTS_NAME = "GET_PRODUCTS_NAME";
 export const DETAIL_PRODUCT = "DETAIL_PRODUCT";
@@ -17,10 +17,10 @@ export const CLEAR_CATEGORIES = "CLEAR_CATEGORIES";
 
 
 
-export const multiAction = (actions) => ({
-  type: MULTI_ACTION,
-  payload: { actions }
-});
+// export const multiAction = (actions) => ({
+//   type: MULTI_ACTION,
+//   payload: { actions }
+// });
 
 
 
