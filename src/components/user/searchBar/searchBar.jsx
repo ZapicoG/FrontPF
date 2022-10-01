@@ -7,13 +7,13 @@ const SearchBar = () => {
 
   const [search, setSearch] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const product = useSelector(state => state.allProductsName);
+  const allProductsName = useSelector(state => state.allProductsName);
     const dispatch = useDispatch();
 
     useEffect(() => {
       dispatch(getProductsName())
   }, [dispatch])
-  console.log(product);
+  console.log(allProductsName, "SearchBar");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -29,17 +29,17 @@ const onClick = (s) => {
 const onchange = (e) => {
   let matches = []
   if (e.length > 0) {
-      matches = product.filter(p => {
+      matches = allProductsName.filter(p => {
           const regex = new RegExp(`${e}`, "gi");
           return p.name.match(regex)
       })
   }
-  console.log('matches', matches)
+  console.log('matches', matches, "SearchBar")
     setSuggestions(matches)
   
   setSearch(e)
 }
-console.log(search)
+console.log(search, "SearchBar")
 
 
   return (
