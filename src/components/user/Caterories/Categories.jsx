@@ -4,12 +4,12 @@ import { resetFilter, updateFilter } from '../../../redux/action';
 const categories = [ 
     {
         id: 1,
-        name: 'Computadores',
+        name: 'Computadoras',
         imageSrc: "https://todotintasysuministros.com/assets/media/computador/hg/hg01081.png?u=1654958571",
     },
     {
         id: 2,
-        name: 'Celularas',
+        name: 'Celulares',
         imageSrc: "https://jumbocolombiaio.vtexassets.com/arquivos/ids/298615-800-600?v=637837572184630000&width=800&height=600&aspect=true",
     },
     // {
