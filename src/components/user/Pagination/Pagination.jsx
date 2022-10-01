@@ -25,3 +25,5 @@ return (<nav aria-label="Page navigation example">
 </nav>)
     
 }
+
+export default Pagination
