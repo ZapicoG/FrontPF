@@ -15,6 +15,8 @@ export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const ADD_CATEGORIES = "ADD_CATEGORIES"
 export const CLEAR_CATEGORIES = "CLEAR_CATEGORIES";
 
+export const FETCH_BRANDS_MODELS = "FETCH_BRANDS_MODELS";
+
 
 
 // export const multiAction = (actions) => ({
@@ -130,3 +132,13 @@ export function clearCategories() {
     }
 };
 
+
+export const getBrandAndModels = () => {
+  return async (dispatch) => {
+    const brandAndModels = await axios.get("https://backpf-production.up.railway.app/allBrandAndModel");
+    dispatch({
+      type: FETCH_BRANDS_MODELS,
+      payload: brandAndModels
+    })
+  }
+}

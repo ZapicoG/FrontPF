@@ -1,3 +1,4 @@
+import { act } from "react-dom/test-utils";
 import { CLEAR_CATEGORIES, DETAIL_PRODUCT, FETCH_CATEGORIES, GET_PRODUCTS_FILTERED, GET_PRODUCTS_NAME, RESET_FILTER, SEARCH_PRODUCT, UPDATE_FILTER } from "../action";
 
 const initialState = {
@@ -76,6 +77,14 @@ const rootReducer = (state = initialState, action) => {
             return{
                 ...state,
                 categories: action.payload
+            }
+
+//Brand / Model
+        case FETCH_BRANDS_MODELS:
+            return {
+                ...state,
+                brand: action.payload.brands,
+                model: action.payload.models
             }
         
         default: return state
