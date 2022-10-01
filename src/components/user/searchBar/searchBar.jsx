@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
 import { Icon } from '@iconify/react';
-import { useSelector, useDispatch } from "react-redux";
-import { getProducts, seachProduct } from "../../../redux/action";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductsName, searchProduct } from "../../../redux/action";
 
 const SearchBar = () => {
 
@@ -11,13 +11,13 @@ const SearchBar = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(getProducts())
+      dispatch(getProductsName())
   }, [dispatch])
   console.log(product);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(seachProduct(search));
+    dispatch(searchProduct(search));
     setSearch('')
 };
 

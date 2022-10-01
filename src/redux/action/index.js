@@ -1,20 +1,32 @@
 import axios from "axios";
-export const GET_PRODUCTS = "GET_PRODUCTS";
+export const GET_PRODUCTS_NAME = "GET_PRODUCTS_NAME";
 export const DETAIL_PRODUCT = "DETAIL_PRODUCT";
 export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
+export const ADD_CATEGORIES = "ADD_CATEGORIES"
 export const CLEAR_CATEGORIES = "CLEAR_CATEGORIES";
+export const UPDATE_FILTER = "UPDATE_FILTER";
+export const FILTER_RESET = "FILTER_RESET";
+export const FETCH_FILTERED = "FETCH_FILTERED"; 
+export const MULTI_ACTION = "MULTI_ACTION";
 
 
 
-export const getProducts = () => {
+export const multiAction = (actions) => ({
+  type: MULTI_ACTION,
+  payload: { actions }
+});
+
+
+
+export const getProductsName = () => {
   return async (dispatch) => {
     try {
       const products = await axios.get(
         "https://backpf-production.up.railway.app/product/all"
       );
       dispatch({
-        type: GET_PRODUCTS,
+        type: GET_PRODUCTS_NAME,
         payload: products.data,
       });
     } catch (error) {
@@ -24,21 +36,29 @@ export const getProducts = () => {
 };
 
 
-export const seachProduct = (name) => {
+export const searchProduct = (name) => {
     return async (dispatch) => {
-      try {
-        const products = await axios.get(
-          `https://backpf-production.up.railway.app/product/filterBy?search=${name}`
-        );
         dispatch({
-          type: SEARCH_PRODUCT,
-          payload: products.data,
+          type: MULTI_ACTION,
+          payload: {actions: [
+            {type: FILTER_RESET, payload: null},
+            {type: UPDATE_FILTER, payload: {search: name}}
+        ]}
         });
-      } catch (error) {
-        console.log(error);
-      }
     };
   };
+
+  
+
+export const updateFilter = (filter) => {
+  return async (dispatch) => {
+    dispatch({
+      type: UPDATE_FILTER,
+      payload: filter
+    })
+  }
+}
+
  
 export const detailProduct = (id) => {
     return async (dispatch) => {

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import SearchBar from '../searchBar/searchBar';
-import s from "./home.module.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from '../../../redux/action';
-import Products from '../Products/Products'
+import { getProductsName } from '../../../redux/action';
+import Products from '../Products/Products';
+import SearchBar from '../searchBar/searchBar';
+import s from "./home.module.css";
 
 
 const Home = () => {
@@ -12,7 +12,7 @@ const Home = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getProducts())
+        dispatch(getProductsName())
     },[dispatch])
 
     console.log(product)
