@@ -1,9 +1,12 @@
+
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductsFiltered, getProductsName } from '../../../redux/action';
 import Products from '../Products/Products';
 import SearchBar from '../searchBar/searchBar';
-import s from "./home.module.css";
+import Categories from "../Caterories/Categories";
+import CarrouselHome from '../Recommended/CarrouselHome'
+import Products from "../Products/Products";
 
 
 const Home = () => {
@@ -12,9 +15,6 @@ const Home = () => {
     const filter = useSelector(state => state.filter)
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch(getProductsName())
-    // },[])
 
 
     useEffect(() =>{
@@ -26,12 +26,16 @@ const Home = () => {
     <>
         <div>
             <SearchBar/>
-        </div>
-        <div className={s.container}>
-            <Products product={products}/>
+            
+        <Categories/>
+        <CarrouselHome/>
+        <Products/>
         </div>
     </>
      );
 }
+
+
+
 
 export default Home
