@@ -14,7 +14,7 @@ const initialState = {
         model: "",
         search:"",
         minPrice: 0,
-        maxPrice: 1000000000000000000,
+        maxPrice: 100000000000,
         order: "ASC",
         amount: 10,
         page: 0
