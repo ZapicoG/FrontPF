@@ -21,14 +21,14 @@ return (<nav aria-label="Page navigation example">
   </li>
         {pages.map((index) => {
             console.log(index);
-            <li>
+            return (<li>
             <a href="#" 
             // aria-current={ (page == index && page < 3) || page >= 3 && index == 3 ? "page" : false }
                 class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"> { 
                 // page < 3 ? page + index : page - 2 + index 
                 index
                 } </a>
-          </li>
+          </li>)
         })}
   <li>
     <a href="#" onClick={() => dispatch(updateFilter({page: (page + 1)}))} class="py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
