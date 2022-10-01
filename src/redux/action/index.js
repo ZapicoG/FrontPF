@@ -64,10 +64,12 @@ export const updateFilter = (filter) => {
 }
 
 export const resetFilter = () => {
-  dispatch({
-    type: RESET_FILTER,
-    payload: null
-  })
+  return async (dispatch) => {
+    dispatch({
+      type: RESET_FILTER,
+      payload: null
+    })
+  }
 }
 
  
