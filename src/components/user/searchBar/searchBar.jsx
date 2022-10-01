@@ -13,7 +13,7 @@ const SearchBar = () => {
     useEffect(() => {
       dispatch(getProductsName())
   }, [dispatch])
-  console.log(allProductsName, "SearchBar");
+  // console.log(allProductsName, "SearchBar");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -35,12 +35,12 @@ const onchange = (e) => {
           return p.name.match(regex)
       })
   }
-  console.log('matches', matches, "SearchBar")
+  // console.log('matches', matches, "SearchBar")
     setSuggestions(matches)
   
   setSearch(e)
 }
-console.log(search, "SearchBar")
+// console.log(search, "SearchBar")
 
 
   return (

@@ -15,7 +15,7 @@ const Details = () => {
   useEffect(()=>{
     dispatch(detailProduct(id))
   },[dispatch, id])
-  console.log(details)
+  // console.log(details, "Details")
 
   return (
     <div>

@@ -14,14 +14,14 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(getProductsName())
-    },[dispatch])
+    },[])
 
 
     useEffect(() =>{
-        console.log(filter, "Home")
+        // console.log(filter, "Home")
         dispatch(getProductsFiltered(filter))
     },[dispatch])
-    console.log(products, "Home")
+    // console.log(products, "Home")
     return ( 
     <>
         <div>

@@ -42,9 +42,9 @@ export const getProductsName = () => {
 
 export const getProductsFiltered = (filter) => {
   return async (dispatch) => {
-    const { category, brand, model, search, minPrice, maxPrice, order, amount, page } = filter;
-    console.log(filter, "Actions")
-    console.log(category, brand, model, search, minPrice, maxPrice, order, amount, page, "Actions")
+    // const { category, brand, model, search, minPrice, maxPrice, order, amount, page } = filter;
+    // console.log(filter, "Actions")
+    // console.log(category, brand, model, search, minPrice, maxPrice, order, amount, page, "Actions")
     const products = await axios.get(
       `https://backpf-production.up.railway.app/product/filterBy`,
       {params: {filter}}
