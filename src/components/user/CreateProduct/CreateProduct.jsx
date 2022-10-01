@@ -12,16 +12,18 @@ export default function CreateProduct () {
     const [brand, setBrand] = useState("");
     const [model, setModel] = useState("");
     const [description, setDescription] = useState("");
-    const [price, setPrice] = useState(0);
-    const [categories, setCategories] = useState("");
+    const [price, setPrice] = useState(null);
+    const [categories, setCategories] = useState([]);
     const [condition, setCondition] = useState("");
     //ESTADO DE LA IMAGEN
     const [imageSelected, setImageSelected] = useState("");
+    console.log("PRICE", price, isNaN(price));
 
     //OTRAS CONSTANTES
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const category = useSelector((state) => state.categories);
+
 
     //TRAER LAS CATEGORIAS Y LUEGO VACIAR EL ESTADO
     useEffect(() => {
@@ -76,11 +78,11 @@ export default function CreateProduct () {
         //PRECIO
         if (!price) {
             return swal({
-              title: "Debe agregar el precio del producto",
+              title: "Debe agregar un número como precio",
               icon: "error",
               button: "Ok",
             });
-        }
+        } else
 
         if (isNaN(price) === true) {
             return swal({
@@ -88,15 +90,15 @@ export default function CreateProduct () {
               icon: "error",
               button: "Ok",
             });
-        }
+        } else
 
-        if (price < 0) {
+        if (price <= 0) {
             return swal({
-              title: "El precio no puede ser un número negativo",
+              title: "El precio debe ser mayor a cero",
               icon: "error",
               button: "Ok",
             });
-        }
+        } else
 
         if (price === 0) {
             return swal({
@@ -156,9 +158,16 @@ export default function CreateProduct () {
     
             await axios.post("https://api.cloudinary.com/v1_1/dzr5xulsx/image/upload", formData)
             .then((response) => 
-                
-                console.log(response.data.secure_url, name, brand, model, description, condition, categories) 
-                )
+                    axios.post("https://backpf-production.up.railway.app/product/create", {
+                        name,
+                        model,
+                        brand,
+                        description,
+                        thumbnail: response.data.secure_url,
+                        price,
+                        condition,
+                        categories
+                    }))
                 .then(() => {
                     swal({
                       title: "¡Producto creado correctamente!",
