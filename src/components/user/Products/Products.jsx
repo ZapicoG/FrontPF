@@ -8,8 +8,11 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { AddShoppingCart } from "@mui/icons-material";
 import accounting from "accounting";
+import { useSelector } from "react-redux";
 
-const products = useSelector(state => state.products);
+
+
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -22,6 +25,7 @@ const ExpandMore = styled((props) => {
 }));
 function Products() {
   const [expanded, setExpanded] = React.useState(false);
+  const products = useSelector(state => state.products);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
