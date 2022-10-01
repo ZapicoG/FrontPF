@@ -18,6 +18,7 @@ const Home = () => {
 
 
     useEffect(() =>{
+        console.log(filter)
         dispatch(getProductsFiltered(filter))
     },[filter])
     console.log(product)
