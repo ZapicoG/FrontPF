@@ -50,9 +50,10 @@ export default function Categories() {
                   />
                 </div>
                 <h3 className="mt-6 text-sm text-gray-500">
-                  <a href="#" onClick={()=>{
-                    dispatch(resetFilter()),
-                    dispatch(updateFilter({category: callout.name}))
+                  <a href="#" onClick={()=> {
+                    dispatch(resetFilter());
+                    dispatch(updateFilter({category: callout.name}));
+                    return
                     }}>
                     <span className="absolute inset-0" />
                     {callout.name}
