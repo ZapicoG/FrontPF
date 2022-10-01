@@ -2,6 +2,9 @@ import axios from "axios";
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const DETAIL_PRODUCT = "DETAIL_PRODUCT";
 export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
+export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
+export const CLEAR_CATEGORIES = "CLEAR_CATEGORIES";
+
 
 
 export const getProducts = () => {
@@ -19,6 +22,7 @@ export const getProducts = () => {
     }
   };
 };
+
 
 export const seachProduct = (name) => {
     return async (dispatch) => {
@@ -51,3 +55,31 @@ export const detailProduct = (id) => {
       }
     };
   };
+
+export const createProducts = (payload) => {
+    return async () => {
+        const products = await axios.post('http://localhost:3001/products', payload);
+        return products;
+    }
+}
+
+export function getCategories () {
+    return async function (dispatch) {
+        fetch("https://backpf-production.up.railway.app/category")
+        .then(response => response.json())
+        .then((categories) => {
+            dispatch({
+                type: FETCH_CATEGORIES,
+                payload: categories,
+            }) 
+        })
+    }
+};
+
+export function clearCategories() {
+    return {
+        type: CLEAR_CATEGORIES,
+        payload: []
+    }
+};
+

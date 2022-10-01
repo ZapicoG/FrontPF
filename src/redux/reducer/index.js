@@ -1,9 +1,12 @@
+
 import { GET_PRODUCTS, DETAIL_PRODUCT, SEARCH_PRODUCT } from "../action";
 
 const initialState = {
     products: [],
     allProduct:[],
     detail: {},
+    categories: [],
+
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -24,6 +27,17 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 products:action.payload
             }
+        case "FETCH_CATEGORIES":
+            return{
+                ...state,
+                categories: action.payload
+            }
+        case "CLEAR_CATEGORIES":
+            return{
+                ...state,
+                categories: action.payload
+            }
+        
         default: return state
     }
 }
