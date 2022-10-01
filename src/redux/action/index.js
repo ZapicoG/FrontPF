@@ -5,6 +5,7 @@ export const MULTI_ACTION = "MULTI_ACTION";
 export const GET_PRODUCTS_NAME = "GET_PRODUCTS_NAME";
 export const DETAIL_PRODUCT = "DETAIL_PRODUCT";
 export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
+export const GET_PRODUCTS_FILTERED = "GET_PRODUCTS_FILTERED";
 
 export const RESET_FILTER = "RESET_FILTER";
 export const UPDATE_FILTER = "UPDATE_FILTER";
@@ -38,6 +39,28 @@ export const getProductsName = () => {
     }
   };
 };
+
+export const getProductsFiltered = (filter) => {
+  return async (dispatch) => {
+    const { category, brand, model, search, minPrice, maxPrice, order, amount, page } = filter;
+    const products = await axios.get(
+      `https://backpf-production.up.railway.app/product/filterBy
+      ?category=${category}
+      &brand=${brand}
+      &model=${model}
+      &search=${search}
+      &minPrice=${minPrice}
+      &maxPrice=${maxPrice}
+      &order=${order}
+      &amount=${amount}
+      &page=${page}`
+      );
+    dispatch({
+      type: GET_PRODUCTS_FILTERED,
+      payload: products.data
+    })
+  }
+}
 
 
 export const searchProduct = (name) => {

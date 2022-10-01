@@ -1,5 +1,5 @@
 
-import { CLEAR_CATEGORIES, DETAIL_PRODUCT, FETCH_CATEGORIES, GET_PRODUCTS_NAME, MULTI_ACTION, RESET_FILTER, SEARCH_PRODUCT, UPDATE_FILTER } from "../action";
+import { CLEAR_CATEGORIES, DETAIL_PRODUCT, FETCH_CATEGORIES, GET_PRODUCTS_FILTERED, GET_PRODUCTS_NAME, MULTI_ACTION, RESET_FILTER, SEARCH_PRODUCT, UPDATE_FILTER } from "../action";
 
 const initialState = {
     products: [],
@@ -45,6 +45,11 @@ const rootReducer = (state = initialState, action) => {
             }
         
 //Products
+        case GET_PRODUCTS_FILTERED:
+            return {
+                ...state,
+                products: action.payload
+            }
         case GET_PRODUCTS_NAME:
             return{
                 ...state,
