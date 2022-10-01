@@ -12,9 +12,9 @@ const Home = () => {
     const filter = useSelector(state => state.filter)
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getProductsName())
-    },[])
+    // useEffect(() => {
+    //     dispatch(getProductsName())
+    // },[])
 
 
     useEffect(() =>{
