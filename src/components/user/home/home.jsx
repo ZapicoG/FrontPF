@@ -20,7 +20,7 @@ const Home = () => {
     useEffect(() =>{
         // console.log(filter, "Home")
         dispatch(getProductsFiltered(filter))
-    },[dispatch])
+    },[filter])
     // console.log(products, "Home")
     return ( 
     <>
