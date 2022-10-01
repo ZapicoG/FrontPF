@@ -1,21 +1,28 @@
 import axios from "axios";
+
+// export const MULTI_ACTION = "MULTI_ACTION";
+
 export const GET_PRODUCTS_NAME = "GET_PRODUCTS_NAME";
 export const DETAIL_PRODUCT = "DETAIL_PRODUCT";
 export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
+export const GET_PRODUCTS_FILTERED = "GET_PRODUCTS_FILTERED";
+
+export const RESET_FILTER = "RESET_FILTER";
+export const UPDATE_FILTER = "UPDATE_FILTER";
+export const FETCH_FILTERED = "FETCH_FILTERED"; 
+
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const ADD_CATEGORIES = "ADD_CATEGORIES"
 export const CLEAR_CATEGORIES = "CLEAR_CATEGORIES";
-export const UPDATE_FILTER = "UPDATE_FILTER";
-export const FILTER_RESET = "FILTER_RESET";
-export const FETCH_FILTERED = "FETCH_FILTERED"; 
-export const MULTI_ACTION = "MULTI_ACTION";
+
+export const FETCH_BRANDS_MODELS = "FETCH_BRANDS_MODELS";
 
 
 
-export const multiAction = (actions) => ({
-  type: MULTI_ACTION,
-  payload: { actions }
-});
+// export const multiAction = (actions) => ({
+//   type: MULTI_ACTION,
+//   payload: { actions }
+// });
 
 
 
@@ -35,26 +42,48 @@ export const getProductsName = () => {
   };
 };
 
+export const getProductsFiltered = (filter) => {
+  return async (dispatch) => {
+    const { category, brand, model, search, minPrice, maxPrice, order, amount, page } = filter;
+    // console.log(filter, "Actions")
+    // console.log(category, brand, model, search, minPrice, maxPrice, order, amount, page, "Actions")
+    const products = await axios.get(
+      `https://backpf-production.up.railway.app/product/filterBy`,
+      {params: { category, brand, model, search, minPrice, maxPrice, order, amount, page }}
+      );
+    dispatch({
+      type: GET_PRODUCTS_FILTERED,
+      payload: products.data
+    })
+  }
+}
+
 
 export const searchProduct = (name) => {
     return async (dispatch) => {
         dispatch({
-          type: MULTI_ACTION,
-          payload: {actions: [
-            {type: FILTER_RESET, payload: null},
-            {type: UPDATE_FILTER, payload: {search: name}}
-        ]}
+          type: UPDATE_FILTER,
+          payload: {search: name}
         });
     };
   };
 
-  
+
 
 export const updateFilter = (filter) => {
   return async (dispatch) => {
     dispatch({
       type: UPDATE_FILTER,
       payload: filter
+    })
+  }
+}
+
+export const resetFilter = () => {
+  return async (dispatch) => {
+    dispatch({
+      type: RESET_FILTER,
+      payload: null
     })
   }
 }
@@ -103,3 +132,13 @@ export function clearCategories() {
     }
 };
 
+
+export const getBrandAndModels = () => {
+  return async (dispatch) => {
+    const brandAndModels = await axios.get("https://backpf-production.up.railway.app/product/allBrandAndModel");
+    dispatch({
+      type: FETCH_BRANDS_MODELS,
+      payload: brandAndModels
+    })
+  }
+}

@@ -1,22 +1,24 @@
 import { Icon } from '@iconify/react';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductsName, searchProduct } from "../../../redux/action";
+import { getBrandAndModels, getProductsName, resetFilter, searchProduct } from "../../../redux/action";
 
 const SearchBar = () => {
 
   const [search, setSearch] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const product = useSelector(state => state.allProduct);
+  const allProductsName = useSelector(state => state.allProductsName);
     const dispatch = useDispatch();
 
     useEffect(() => {
       dispatch(getProductsName())
+      dispatch(getBrandAndModels())
   }, [dispatch])
-  console.log(product);
+  // console.log(allProductsName, "SearchBar");
 
   const onSubmit = (e) => {
     e.preventDefault();
+    dispatch(resetFilter())
     dispatch(searchProduct(search));
     setSearch('')
 };
@@ -29,17 +31,17 @@ const onClick = (s) => {
 const onchange = (e) => {
   let matches = []
   if (e.length > 0) {
-      matches = product.filter(p => {
+      matches = allProductsName.filter(p => {
           const regex = new RegExp(`${e}`, "gi");
           return p.name.match(regex)
       })
   }
-  console.log('matches', matches)
+  // console.log('matches', matches, "SearchBar")
     setSuggestions(matches)
   
   setSearch(e)
 }
-console.log(search)
+// console.log(search, "SearchBar")
 
 
   return (

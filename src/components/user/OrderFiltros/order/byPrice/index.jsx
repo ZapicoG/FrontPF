@@ -1,10 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { updateFilter } from "../../../../../redux/action";
 
 
 export default function ByPrice(){
+    var dispatch = useDispatch()
     return (
         <>
-            <select>
+            <select onChange={e => dispatch(updateFilter({order: e.target.value}))}>
                 <option hidden>Price</option>
                 <option>ASC</option>
                 <option>DESC</option>

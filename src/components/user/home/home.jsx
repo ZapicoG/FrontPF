@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductsName } from '../../../redux/action';
+import { getProductsName , getProductsFiltered} from '../../../redux/action';
 import OrderFilt from '../OrderFiltros';
 import Products from '../Products/Products';
 import SearchBar from '../searchBar/searchBar';
@@ -9,14 +9,20 @@ import s from "./home.module.css";
 
 const Home = () => {
 
-    const product = useSelector(state => state.products);
+    const products = useSelector(state => state.products);
+    const filter = useSelector(state => state.filter)
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getProductsName())
-    },[dispatch])
+    // useEffect(() => {
+    //     dispatch(getProductsName())
+    // },[])
 
-    console.log(product)
+
+    useEffect(() =>{
+        // console.log(filter, "Home")
+        dispatch(getProductsFiltered(filter))
+    },[filter])
+    // console.log(products, "Home")
     return ( 
     <>
         <div>
@@ -26,7 +32,7 @@ const Home = () => {
             <OrderFilt/>
         </div>
         <div className={s.container}>
-            <Products product={product}/>
+            <Products product={products}/>
         </div>
     </>
      );
