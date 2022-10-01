@@ -11,6 +11,9 @@ import Profile from './components/user/profile/profile';
 import Favorites from './components/user/favorites/fovorites';
 import History from './components/user/history/history';
 import Cart from './components/user/cart/cart';
+import Error from './components/user/error/error';
+import CreateProduct from './components/user/CreateProduct/CreateProduct';
+
 
 function App() {
   return (
@@ -28,6 +31,9 @@ function App() {
           <Route exact path='/details' element={<Details />} />
           <Route exact path='/home/log-in' element={<LogIn />} />
           <Route exact path='/home/sign-in' element={<SignIn />} />
+          <Route exact path='/home/detail/:id' element={<Details />} />
+          <Route exact path="/createProduct" element={<CreateProduct/>} />
+          <Route path='*' element={<Error/>}/>
         </Routes>
       </header>
     </div>
