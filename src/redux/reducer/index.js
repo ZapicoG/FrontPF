@@ -83,8 +83,8 @@ const rootReducer = (state = initialState, action) => {
         case FETCH_BRANDS_MODELS:
             return {
                 ...state,
-                brand: action.payload.brands,
-                model: action.payload.models
+                brand: action.payload.data.brands,
+                model: action.payload.data.models
             }
         
         default: return state
