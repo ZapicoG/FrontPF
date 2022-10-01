@@ -31,7 +31,7 @@ const Home = () => {
         <Categories/>
         <CarrouselHome/>
         <Products/>
-        {/* <Pagination/> */}
+        <Pagination/>
         </div>
     </>
      );
