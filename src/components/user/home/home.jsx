@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductsName } from '../../../redux/action';
+import OrderFilt from '../OrderFiltros';
 import Products from '../Products/Products';
 import SearchBar from '../searchBar/searchBar';
 import s from "./home.module.css";
@@ -20,6 +21,9 @@ const Home = () => {
     <>
         <div>
             <SearchBar/>
+        </div>
+        <div>
+            <OrderFilt/>
         </div>
         <div className={s.container}>
             <Products product={product}/>
