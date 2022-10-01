@@ -1,11 +1,4 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import Product from "../product/product";
-// import products from "../productData";
-const products = [ 
+export const products = [ 
     {
         id: 1,
         name: 'Computador',
@@ -29,7 +22,7 @@ const products = [
         name: 'Celular iphone',
         productType: 'Celular iphone',
         price: 5899000,
-        rating: 4,
+        rating: 5,
         image: "https://cdn.shopify.com/s/files/1/0485/4566/1094/products/iPhone13ProMax-1_900x.jpg?v=1634758315",
         description: 'iphone 13 pro max 256gb'
     },
@@ -38,7 +31,7 @@ const products = [
         name: 'Televisor LG',
         productType: 'Televisor',
         price: 1499000,
-        rating: 3,
+        rating: 5,
         image: "https://www.lg.com/co/images/televisores/md07553134/gallery/D-1.jpg",
         description: 'Televior LG UHD 65" LED 4K'
     },
@@ -56,7 +49,7 @@ const products = [
         name: 'MacBook pro M2',
         productType: 'Computador',
         price: 7999000,
-        rating: 4,
+        rating: 5,
         image: "https://itechcolombia.co/wp-content/uploads/2022/08/mbp-silver-select-202206.png",
         description: 'Apple MacBook pro M2'
     },
@@ -65,39 +58,17 @@ const products = [
         name: 'Portatil Lenovo',
         productType: 'Computador con accesorios',
         price: 949000,
-        rating: 4,
+        rating: 5,
         image: "https://pcsystemcolombia.com/wp-content/uploads/2021/02/Port%C3%A1til-Lenovo-V145-14AST-AMD-A4-9125.jpg",
         description: 'Computador con todos los accesorios en descuento'
     },
     {
         id: 8,
         name: 'Celular Oppo',
-        productType: 'Celular',
+        productType: 'Celukar',
         price: 835000,
-        rating: 3,
+        rating: 5,
         image: "https://falabella.scene7.com/is/image/FalabellaCO/16136638_1?wid=800&hei=800&qlt=70",
         description: 'Celular Oppo A 54 128GB'
     },
 ]
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
-
-export default function Products() {
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
-        {products.map((product) => (
-          <Grid item xs={6} sm={6} md={6} lg={6}>
-            <Product key={product.id} product={product} />
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
-  );
-}
