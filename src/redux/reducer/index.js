@@ -3,6 +3,7 @@ import { CLEAR_CATEGORIES, DETAIL_PRODUCT, FETCH_BRANDS_MODELS, FETCH_CATEGORIES
 
 const initialState = {
     products: [],
+    favorites: [],
     allProductsName:[],
     detail: {},
     categories: [],
@@ -65,6 +66,11 @@ const rootReducer = (state = initialState, action) => {
             return{
                 ...state,
                 products: action.payload
+            }
+        case FETCH_FAVORITES:
+            return {
+                ...state,
+                favorites: action.payload
             }
 
 //Categories            
