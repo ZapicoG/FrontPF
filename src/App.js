@@ -5,6 +5,7 @@ import LogIn from './components/user/logIn/logIn'
 import SignIn from './components/user/signIn/signIn';
 import { Routes, Route } from 'react-router-dom';
 import Landing from './components/user/Landing/Landing';
+import CreateProduct from './components/user/CreateProduct/CreateProduct';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path='/home' element={<Home />} />
           <Route exact path='/log-in' element={<LogIn />} />
           <Route exact path='/sign-in' element={<SignIn />} />
+          <Route exact path="/createProduct" element={<CreateProduct/>} />
         </Routes>
       </header>
     </div>

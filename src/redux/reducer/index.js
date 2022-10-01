@@ -1,5 +1,7 @@
+
 const initialState = {
-    products: []
+    products: [],
+    categories: [],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -14,6 +16,17 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 products: action.payload
             }
+        case "FETCH_CATEGORIES":
+            return{
+                ...state,
+                categories: action.payload
+            }
+        case "CLEAR_CATEGORIES":
+            return{
+                ...state,
+                categories: action.payload
+            }
+        
         default: return state
     }
 }

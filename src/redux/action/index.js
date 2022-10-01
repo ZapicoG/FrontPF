@@ -1,4 +1,6 @@
 import axios from 'axios';
+export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
+export const CLEAR_CATEGORIES = "CLEAR_CATEGORIES";
 
 
 export const getProducts = () => {
@@ -17,4 +19,24 @@ export const createProducts = (payload) => {
         return products;
     }
 }
+
+export function getCategories () {
+    return async function (dispatch) {
+        fetch("https://backpf-production.up.railway.app/category")
+        .then(response => response.json())
+        .then((categories) => {
+            dispatch({
+                type: FETCH_CATEGORIES,
+                payload: categories,
+            }) 
+        })
+    }
+};
+
+export function clearCategories() {
+    return {
+        type: CLEAR_CATEGORIES,
+        payload: []
+    }
+};
 
