@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductsName, searchProduct } from "../../../redux/action";
+import { getProductsName, resetFilter, searchProduct } from "../../../redux/action";
 
 const SearchBar = () => {
 
@@ -18,6 +18,7 @@ const SearchBar = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(searchProduct(search));
+    dispatch(resetFilter())
     setSearch('')
 };
 

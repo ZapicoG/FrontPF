@@ -60,11 +60,8 @@ export const getProductsFiltered = (filter) => {
 export const searchProduct = (name) => {
     return async (dispatch) => {
         dispatch({
-          type: MULTI_ACTION,
-          payload: {actions: [
-            {type: RESET_FILTER, payload: null},
-            {type: UPDATE_FILTER, payload: {search: name}}
-        ]}
+          type: UPDATE_FILTER,
+          payload: {search: name}
         });
     };
   };

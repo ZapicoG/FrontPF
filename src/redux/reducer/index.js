@@ -24,13 +24,13 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
     switch (action.type){
 
-        case MULTI_ACTION:
-            const results = action.payload.actions.map(a => {
-                return async (dispatch) => {
-                    dispatch(a)
-                }
-            })
-            return results;
+        // case MULTI_ACTION:
+        //     const results = action.payload.actions.map(a => {
+        //         return async (dispatch) => {
+        //             dispatch(a)
+        //         }
+        //     })
+        //     return results;
 
 //Filter
         case RESET_FILTER:
