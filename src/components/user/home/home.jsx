@@ -6,7 +6,7 @@ import Products from '../Products/Products';
 import SearchBar from '../searchBar/searchBar';
 import Categories from "../Caterories/Categories";
 import CarrouselHome from '../Recommended/CarrouselHome'
-import Products from "../Products/Products";
+
 
 
 const Home = () => {
