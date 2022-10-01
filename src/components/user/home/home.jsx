@@ -18,10 +18,10 @@ const Home = () => {
 
 
     useEffect(() =>{
-        console.log(filter)
+        console.log(filter, "Home")
         dispatch(getProductsFiltered(filter))
-    },[filter])
-    console.log(products)
+    },[dispatch])
+    console.log(products, "Home")
     return ( 
     <>
         <div>
