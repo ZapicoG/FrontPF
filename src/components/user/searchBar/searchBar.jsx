@@ -17,8 +17,8 @@ const SearchBar = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(searchProduct(search));
     dispatch(resetFilter())
+    dispatch(searchProduct(search));
     setSearch('')
 };
 
