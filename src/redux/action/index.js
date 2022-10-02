@@ -6,6 +6,8 @@ export const GET_PRODUCTS_NAME = "GET_PRODUCTS_NAME";
 export const DETAIL_PRODUCT = "DETAIL_PRODUCT";
 export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
 export const GET_PRODUCTS_FILTERED = "GET_PRODUCTS_FILTERED";
+export const FETCH_FAVORITES = "FETCH_FAVORITES";
+
 
 export const RESET_FILTER = "RESET_FILTER";
 export const UPDATE_FILTER = "UPDATE_FILTER";
@@ -105,11 +107,67 @@ export const detailProduct = (id) => {
     };
   };
 
-export const createProducts = (payload) => {
-    return async () => {
-        const products = await axios.post('http://localhost:3001/products', payload);
-        return products;
+
+
+
+export const userState = (payload) => {
+    return { 
+        type: "USER_STATE",
+        payload
     }
+}
+
+
+export function getCategories () {
+    return async function (dispatch) {
+        fetch("https://backpf-production.up.railway.app/category")
+        .then(response => response.json())
+        .then((categories) => {
+            dispatch({
+                type: FETCH_CATEGORIES,
+                payload: categories,
+            }) 
+        })
+    }
+};
+
+
+
+export function clearCategories() {
+    return {
+        type: CLEAR_CATEGORIES,
+        payload: []
+    }
+};
+
+
+export const getBrandAndModels = () => {
+  return async (dispatch) => {
+    const brandAndModels = await axios.get("https://backpf-production.up.railway.app/product/allBrandAndModel");
+    dispatch({
+      type: FETCH_BRANDS_MODELS,
+      payload: brandAndModels.data
+    })
+  }
+}
+
+
+
+export const getFavorites = (userName) => {
+  return async (dispatch) => {
+    try {
+      const favorites = await axios.get(
+        "https://backpf-production.up.railway.app/favorite",
+        {params: { userName }}
+      )
+      dispatch({
+        type: FETCH_FAVORITES,
+        payload: favorites
+      })
+    } catch (err) {
+      console.log({error: err.message})
+    }
+  }
 }
 
 export function getCategories () {

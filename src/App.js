@@ -8,14 +8,19 @@ import Details from './components/user/details/details';
 import Landing from './components/user/Landing/Landing';
 import About from './components/user/about/about';
 import Profile from './components/user/profile/profile';
-import Favorites from './components/user/favorites/fovorites';
+import Favorites from './components/user/favorites/favorites';
 import History from './components/user/history/history';
 import Cart from './components/user/cart/cart';
 import Error from './components/user/error/error';
 import CreateProduct from './components/user/CreateProduct/CreateProduct';
+import { useSelector } from 'react-redux';
+
 
 
 function App() {
+  const userState = useSelector((state)=>state.loggedIn)
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -34,6 +39,9 @@ function App() {
           <Route exact path='/home/detail/:id' element={<Details />} />
           <Route exact path="/createProduct" element={<CreateProduct/>} />
           <Route path='*' element={<Error/>}/>
+          { !userState? (<Route exact path='/home/sign-in' element={<SignIn />} />): null}
+          <Route exact path='/home/details' element={<Details />} />
+
         </Routes>
       </header>
     </div>
