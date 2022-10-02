@@ -9,6 +9,7 @@ const initialState = {
     categories: [],
     brand: [],
     model: [],
+    maxPages: 0,
     filter: {
         category: "",
         brand: "",
@@ -49,7 +50,8 @@ const rootReducer = (state = initialState, action) => {
         case GET_PRODUCTS_FILTERED:
             return {
                 ...state,
-                products: action.payload
+                products: action.payload.data.rows,
+                maxPages: action.payload.data.count
             }
         case GET_PRODUCTS_NAME:
             return{
