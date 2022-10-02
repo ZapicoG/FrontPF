@@ -8,7 +8,7 @@ import { updateFilter } from "../../../redux/action";
 const Pagination = () => {
     const dispatch = useDispatch();
     const page = useSelector(state => state.filter.page);
-    const maxPages = Math.floor(useSelector(state => state.allProductsName) / useSelector(state => state.filter.amount));
+    const maxPages = Math.ceil(useSelector(state => state.maxPages));
     const pages = [0,1,2,3,4];
   
 

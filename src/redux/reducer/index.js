@@ -50,8 +50,8 @@ const rootReducer = (state = initialState, action) => {
         case GET_PRODUCTS_FILTERED:
             return {
                 ...state,
-                products: action.payload.data.rows,
-                maxPages: action.payload.data.count
+                products: action.payload.rows,
+                maxPages: action.payload.count
             }
         case GET_PRODUCTS_NAME:
             return{
@@ -91,8 +91,8 @@ const rootReducer = (state = initialState, action) => {
         case FETCH_BRANDS_MODELS:
             return {
                 ...state,
-                brand: action.payload.data.brands,
-                model: action.payload.data.models
+                brand: action.payload.brands,
+                model: action.payload.models
             }
         
         default: return state

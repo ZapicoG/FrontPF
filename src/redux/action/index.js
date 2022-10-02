@@ -141,7 +141,7 @@ export const getBrandAndModels = () => {
     const brandAndModels = await axios.get("https://backpf-production.up.railway.app/product/allBrandAndModel");
     dispatch({
       type: FETCH_BRANDS_MODELS,
-      payload: brandAndModels
+      payload: brandAndModels.data
     })
   }
 }
