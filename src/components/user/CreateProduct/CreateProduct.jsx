@@ -6,6 +6,7 @@ import axios from "axios";
 import { getCategories, clearCategories } from "../../../redux/action";
 import "../CreateProduct/CreateProduct.css"
 
+
 export default function CreateProduct () {
 
     //ESTADOS DEL PRODUCTO
@@ -15,15 +16,18 @@ export default function CreateProduct () {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState(null);
     const [categories, setCategories] = useState([]);
+
     const [condition, setCondition] = useState("");
     //ESTADO DE LA IMAGEN
     const [imageSelected, setImageSelected] = useState("");
+
 
 
     //OTRAS CONSTANTES
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const category = useSelector((state) => state.categories);
+
 
 
     //TRAER LAS CATEGORIAS Y LUEGO VACIAR EL ESTADO
@@ -85,6 +89,7 @@ export default function CreateProduct () {
             });
         } else
 
+
         if (isNaN(price) === true) {
             return swal({
               title: "El precio debe ser un número",
@@ -100,6 +105,7 @@ export default function CreateProduct () {
               button: "Ok",
             });
         } else
+
 
         if (price === 0) {
             return swal({
@@ -169,6 +175,7 @@ export default function CreateProduct () {
                         condition,
                         categories
                     }))
+
                 .then(() => {
                     swal({
                       title: "¡Producto creado correctamente!",
@@ -192,6 +199,7 @@ export default function CreateProduct () {
 
     return(
         <>
+
                 <h1 className="title">Creación de Producto</h1>
             <form className="formulario" noValidate onSubmit={handleOnSubmit}>
                 <div className="contenedor">
@@ -217,6 +225,7 @@ export default function CreateProduct () {
                     <input type="text" 
                     name="model"
                     className="inputs"
+
                     placeholder="Modelo"
                     onChange={(e) => setModel(e.target.value)}
                     />
@@ -245,6 +254,7 @@ export default function CreateProduct () {
                     type="number" 
                     name="price"
                     className="inputPrecio"
+
                     placeholder="Precio"
                     onChange={(e) => setPrice(e.target.value)}
                     />
@@ -252,6 +262,7 @@ export default function CreateProduct () {
                 <div className="contenedor">
                     <p className="p">Condición: </p>
                     <select name="condition" className="inputSelect" onChange={(e) => setCondition(e.target.value)} >
+
                         <option value="Seleccionar">Seleccionar</option>
                         <option value="Nuevo">Nuevo</option>
                         <option value="Usado">Usado</option>
@@ -260,6 +271,7 @@ export default function CreateProduct () {
                 <div className="contenedor">
                     <p className="p">Categoría: </p>
                     <select name="category" className="inputSelect" onChange={(e) => setCategories(e.target.value)}>
+
                     <option value="select" >Seleccionar</option>
                     {category && category.map((c) => {
                         return(
@@ -269,6 +281,7 @@ export default function CreateProduct () {
                     </select>
                 </div>
                 <button className="button" type="submit">
+
                     Crear Producto
                 </button>
             </form>

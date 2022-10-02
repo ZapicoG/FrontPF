@@ -1,25 +1,57 @@
+
+import { getProductsName , getProductsFiltered} from '../../../redux/action';
+import OrderFilt from '../OrderFiltros';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from '../../../redux/action';
-import Products from '../Products/Products'
+import Products from '../Products/Products';
+import SearchBar from '../searchBar/searchBar';
+import Categories from "../Caterories/Categories";
+import CarrouselHome from '../Recommended/CarrouselHome'
+import Pagination from '../Pagination/Pagination';
+
+
+
 
 
 const Home = () => {
 
-    const product = useSelector(state => state.products);
+
+    const products = useSelector(state => state.products);
+    const filter = useSelector(state => state.filter)
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getProducts())
-    },[dispatch])
 
-    console.log(product)
+    // useEffect(() => {
+    //     dispatch(getProductsName())
+    // },[])
+
+
+    useEffect(() =>{
+        // console.log(filter, "Home")
+        dispatch(getProductsFiltered(filter))
+    },[filter])
+    // console.log(products, "Home")
     return ( 
+    <>
         <div>
-            <Products product={product}/>
+            <SearchBar/>           
         </div>
-  
-  );
-};
+        
+        <div>
+           
+        <Categories/>
+        <CarrouselHome/>
+        <OrderFilt/>
+        <Products/>
+        <Pagination/>
 
-export default Home;
+
+        </div>
+    </>
+     );
+}
+
+
+
+
+export default Home
