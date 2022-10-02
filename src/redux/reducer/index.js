@@ -3,6 +3,7 @@ import { CLEAR_CATEGORIES, DETAIL_PRODUCT, FETCH_BRANDS_MODELS, FETCH_CATEGORIES
 
 const initialState = {
     products: [],
+
     favorites: [],
     allProductsName:[],
     detail: {},
@@ -20,7 +21,9 @@ const initialState = {
         order: "ASC",
         amount: 10,
         page: 0
-    }
+    },
+    loggedIn: false
+
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -95,6 +98,14 @@ const rootReducer = (state = initialState, action) => {
                 model: action.payload.models
             }
         
+//User State
+        case "USER_STATE":
+            return{
+                ...state,
+                loggedIn: action.payload
+            }
+
+
         default: return state
     }
 }

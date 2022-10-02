@@ -1,5 +1,5 @@
-import axios from "axios";
 
+import axios from "axios";
 // export const MULTI_ACTION = "MULTI_ACTION";
 
 export const GET_PRODUCTS_NAME = "GET_PRODUCTS_NAME";
@@ -106,12 +106,16 @@ export const detailProduct = (id) => {
     };
   };
 
-export const createProducts = (payload) => {
-    return async () => {
-        const products = await axios.post('http://localhost:3001/products', payload);
-        return products;
+
+
+
+export const userState = (payload) => {
+    return { 
+        type: "USER_STATE",
+        payload
     }
 }
+
 
 export function getCategories () {
     return async function (dispatch) {
@@ -164,3 +168,4 @@ export const getFavorites = (userName) => {
     }
   }
 }
+
