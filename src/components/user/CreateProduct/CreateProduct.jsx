@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import swal from "sweetalert";
 import axios from "axios";
 import { getCategories, clearCategories } from "../../../redux/action";
+import "../CreateProduct/CreateProduct.css"
 
 export default function CreateProduct () {
 
@@ -191,67 +192,74 @@ export default function CreateProduct () {
 
     return(
         <>
-            <form noValidate onSubmit={handleOnSubmit}>
-                <h2>Creación de Producto</h2>
-                <div>
-                    <p>Nombre del producto: </p>
+                <h1 className="title">Creación de Producto</h1>
+            <form className="formulario" noValidate onSubmit={handleOnSubmit}>
+                <div className="contenedor">
+                    <p className="p">Nombre del producto: </p>
                     <input type="text" 
                     name="name"
+                    className="inputs"
                     placeholder="Nombre"
                     onChange={(e) => setName(e.target.value)}
                     />
                 </div>
-                <div>
-                    <p>Marca: </p>
+                <div className="contenedor">
+                    <p className="p">Marca: </p>
                     <input type="text" 
                     name="brand"
+                    className="inputs"
                     placeholder="Por ejemplo LG"
                     onChange={(e) => setBrand(e.target.value)}
                     />
                 </div>
-                <div>
-                    <p>Modelo: </p>
+                <div className="contenedor">
+                    <p className="p">Modelo: </p>
                     <input type="text" 
                     name="model"
+                    className="inputs"
                     placeholder="Modelo"
                     onChange={(e) => setModel(e.target.value)}
                     />
                 </div>
-                <div>
-                    <p>Descripción: </p>
+                <div className="contenedor">
+                    <p className="p">Descripción: </p>
                     <input 
                     type="text" 
                     name="description"
+                    className="inputs"
                     placeholder="Decripción"
                     onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
-                <div>
-                    <p>Imagen: </p>
+                <div className="contenedor">
+                    <p className="p">Imagen: </p>
                     <input 
                     type="file" 
+                    className="inputImage"
+                    /* className="block text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" */
                     onChange={(e)=> {setImageSelected(e.target.files[0])}}/>
                 </div>
-                <div>
-                    <p>Precio: </p>
+                <div className="contenedor">
+                    <p className="p">Precio: </p>
                     <input 
                     type="number" 
                     name="price"
+                    className="inputPrecio"
                     placeholder="Precio"
                     onChange={(e) => setPrice(e.target.value)}
                     />
                 </div>
-                <div>
-                    <p>Condición: </p>
-                    <select name="condition" onChange={(e) => setCondition(e.target.value)} >
+                <div className="contenedor">
+                    <p className="p">Condición: </p>
+                    <select name="condition" className="inputSelect" onChange={(e) => setCondition(e.target.value)} >
                         <option value="Seleccionar">Seleccionar</option>
                         <option value="Nuevo">Nuevo</option>
                         <option value="Usado">Usado</option>
                     </select>
                 </div>
-                <div>
-                    <p>Categoría: </p>
-                    <select name="category" onChange={(e) => setCategories(e.target.value)}>
+                <div className="contenedor">
+                    <p className="p">Categoría: </p>
+                    <select name="category" className="inputSelect" onChange={(e) => setCategories(e.target.value)}>
                     <option value="select" >Seleccionar</option>
                     {category && category.map((c) => {
                         return(
@@ -260,7 +268,7 @@ export default function CreateProduct () {
                     })}
                     </select>
                 </div>
-                <button type="submit">
+                <button className="button" type="submit">
                     Crear Producto
                 </button>
             </form>
