@@ -58,7 +58,7 @@ const onchange = (e) => {
         onChange={e => onchange(e.target.value)}
         type="text"
         name="text"
-        placeholder="Search..."
+        placeholder="¿Qué estás buscando?"
         class="bg-transparent py-2 text-gray-600 px-4 focus:outline-none w-full"
       />
     </form>

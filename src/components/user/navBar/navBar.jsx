@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Routes, Route } from 'react-router-dom';
 import { useSelector, userDispatch, useDispatch } from "react-redux";
 import { userState } from "../../../redux/action";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 
@@ -19,13 +20,14 @@ import "./navBar.css";
 
 
 const NavBar = () => {
-  
+  const navigate = useNavigate(); 
   const userStatus = useSelector((state)=> state.loggedIn)
   const dispatch = useDispatch();
 
   useEffect( () => {
       const tokenCheck =async ()=>{
       const tokenStatus  =  await axios.get ('https://backpf-production.up.railway.app/token/tokenCheck', { headers: authHeader() });
+     /*  const tokenStatus  =  await axios.get ('http://localhost:3001/token/tokenCheck', { headers: authHeader() }); */
       console.log('log de tokenStatus',tokenStatus.data);
       dispatch(userState(tokenStatus.data))
       }
@@ -40,6 +42,9 @@ const NavBar = () => {
     
   };
 
+  const handleLogIn = () => {
+    navigate('/home/log-in')
+  }
 
 
 
@@ -102,11 +107,17 @@ const NavBar = () => {
                   History
                 </Link>
               </li>
-              { userStatus && (
+              { userStatus ? (
               <button onClick={()=>handleLogOut()} class="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0"  >
-                Logout
+                Cerrar sesión
               </button>
-              )}
+              ): (
+                <button onClick={()=>handleLogIn()} class="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0"  >
+                Ingresar
+              </button>
+              )
+            
+            }
             </ul>
           </div>
           <div class="flex items-center relative">
