@@ -18,7 +18,7 @@ export default function CreateProduct () {
     const [condition, setCondition] = useState("");
     //ESTADO DE LA IMAGEN
     const [imageSelected, setImageSelected] = useState("");
-    console.log("PRICE", price, isNaN(price));
+
 
     //OTRAS CONSTANTES
     const navigate = useNavigate();
@@ -199,7 +199,7 @@ export default function CreateProduct () {
                     <input type="text" 
                     name="name"
                     className="inputs"
-                    placeholder="Nombre"
+                    placeholder="Se presentará como el título"
                     onChange={(e) => setName(e.target.value)}
                     />
                 </div>
@@ -208,7 +208,7 @@ export default function CreateProduct () {
                     <input type="text" 
                     name="brand"
                     className="inputs"
-                    placeholder="Por ejemplo LG"
+                    placeholder="Por ejemplo LG, Samsung, Lenovo"
                     onChange={(e) => setBrand(e.target.value)}
                     />
                 </div>
@@ -227,7 +227,7 @@ export default function CreateProduct () {
                     type="text" 
                     name="description"
                     className="inputs"
-                    placeholder="Decripción"
+                    placeholder="Decripción de los componentes del producto"
                     onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>

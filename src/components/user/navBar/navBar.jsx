@@ -57,6 +57,9 @@ const NavBar = () => {
                 <Link to={'/home'} class="nav-link text-white" href="#!">Home</Link>
               </li>
               <li class="nav-item p-2">
+                <Link to={'/createProduct'} class="nav-link text-white" href="#!">Crear Producto</Link>
+              </li>
+              <li class="nav-item p-2">
                 <Link to={'/home/abaut'}
                   class="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0">
                   Team

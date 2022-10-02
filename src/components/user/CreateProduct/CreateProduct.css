@@ -1,9 +1,11 @@
 .title {
-    color: #FCF8E8; font-size: 50px; font-style: italic;
+    margin-left: 43%;
+    color: black; font-size: 50px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin-top: 25px;
 }
 .formulario {
-    background-color: #0F3460;
+    background-color: /* #101930 */ #16213E;
+    
     margin-left: 30%;
     margin-right: 30%;
     margin-top: 50px;
@@ -12,7 +14,7 @@
 
 
 .p {
-    color: #FCF8E8; font-size: 25px;
+    color: #FCF8E8; font-size: 25px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin-left: 10%;
     margin-right: 20px;
 }
@@ -56,13 +58,18 @@
     display: flex; /* las cajas una al lado de la otra */
     padding: 15px;
     justify-content: space-between;
+    margin-top: 1.5%;
 }
 
 .button {
-    background-color: #00a4e4;
-    color: #FCF8E8; font-style: italic;
+    background-color: #277BC0;
+    color: #FCF8E8; font-style: italic; font-size: 22px; font-family: fantasy;
     padding: 5px;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 2%;
+    width : 15%;
+    margin-left: 75%;
+    margin-bottom: 2%;
 }
 
 .button:hover {
