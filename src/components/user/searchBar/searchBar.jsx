@@ -1,23 +1,28 @@
-import React, { useState, useEffect } from "react";
+
 import { Icon } from '@iconify/react';
-import { useSelector, useDispatch } from "react-redux";
-import { getProducts, seachProduct } from "../../../redux/action";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getBrandAndModels, getProductsName, resetFilter, searchProduct } from "../../../redux/action";
 
 const SearchBar = () => {
 
   const [search, setSearch] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const product = useSelector(state => state.allProduct);
+
+  const allProductsName = useSelector(state => state.allProductsName);
     const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(getProducts())
+      dispatch(getProductsName())
+      dispatch(getBrandAndModels())
   }, [dispatch])
-  console.log(product);
+  // console.log(allProductsName, "SearchBar");
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(seachProduct(search));
+    dispatch(resetFilter())
+    dispatch(searchProduct(search));
+
     setSearch('')
 };
 
@@ -29,7 +34,9 @@ const onClick = (s) => {
 const onchange = (e) => {
   let matches = []
   if (e.length > 0) {
-      matches = product.filter(p => {
+
+      matches = allProductsName.filter(p => {
+
           const regex = new RegExp(`${e}`, "gi");
           return p.name.match(regex)
       })
@@ -43,9 +50,13 @@ console.log(suggestions)
 
 
   return (
-    <div class='w-10/12'>
-    <form class="bg-gray-100 w-full rounded border border-gray-200 flex items-center" onSubmit={e=>onSubmit(e)}>
-      <button class="py-3 px-6 bg-white text-gray-600 rounded-l border-r border-gray-200 hover:bg-gray-50 active:bg-gray-200 disabled:opacity-50 inline-flex items-center focus:outline-none">
+    <div className='w-10/12'>
+
+    <form className="bg-gray-100 w-full rounded border border-gray-200 flex items-center" onSubmit={e=>onSubmit(e)} autoComplete="off">
+
+
+      <button className="py-3 px-6 bg-white text-gray-600 rounded-l border-r border-gray-200 hover:bg-gray-50 active:bg-gray-200 disabled:opacity-50 inline-flex items-center focus:outline-none">
+
       <Icon icon="fe:search" />
       </button>
       <input
@@ -53,8 +64,11 @@ console.log(suggestions)
         onChange={e => onchange(e.target.value)}
         type="text"
         name="text"
-        placeholder="Search..."
-        class="bg-transparent py-2 text-gray-600 px-4 focus:outline-none w-full"
+
+
+        placeholder="¿Qué estás buscando?"
+        className="bg-transparent py-2 text-gray-600 px-4 focus:outline-none w-full"
+
       />
     </form>
     {
