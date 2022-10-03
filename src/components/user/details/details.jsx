@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { detailProduct } from "../../../redux/action";
@@ -10,16 +10,18 @@ const Details = () => {
 
   const details = useSelector(state => state.detail);
   const dispatch = useDispatch();
-  const {id} = useParams();
+  const { id } = useParams();
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(detailProduct(id))
-  },[dispatch, id])
+  }, [dispatch, id])
   console.log(details)
+
+
 
   return (
     <div>
-      
+
       <style>
         @import url(https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css);
       </style>
@@ -59,15 +61,7 @@ const Details = () => {
                 <div class="inline-block align-bottom mr-5">
                   <span class="text-2xl leading-none align-baseline">$</span>
                   <span class="font-bold text-3xl leading-none align-baseline">
-                    {details.price}
-                  </span>
-                </div>
-              </div>
-              <div class='mt-2'>
-                <div class="inline-block align-bottom mr-5">
-                  <span class="text-2xl leading-none align-baseline">brand   </span>
-                  <span class="font-bold text-3xl leading-none align-baseline">
-                    {details.brand}
+                    {Math.floor(details.price / 300)}
                   </span>
                 </div>
               </div>
@@ -102,8 +96,39 @@ const Details = () => {
               </div>
             </div>
           </div>
+
+
+
+
+          <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+            <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+              <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+                <span className="relative inline-block">
+                </span>{' '}
+                Characters
+              </h2>
+            </div>
+            <div className="grid gap-8 row-gap-10 lg:grid-cols-2">
+              <div className="max-w-md sm:mx-auto sm:text-center">
+                <h6 className="mb-3 text-xl font-bold leading-5">Model</h6>
+                <p className="mb-3 text-sm text-gray-900">
+                  {details.model}
+                </p>
+              </div>
+              <div className="max-w-md sm:mx-auto sm:text-center">
+                <h6 className="mb-3 text-xl font-bold leading-5">Brand</h6>
+                <p className="mb-3 text-sm text-gray-900">
+                  {details.brand}
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+
           {/* {<------------------ comentarios ------------------------>} */}
-          <Comment/>
+          <Comment />
           {/* {<------------------------------------------>} */}
         </div>
       </div>

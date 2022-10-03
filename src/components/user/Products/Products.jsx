@@ -3,7 +3,7 @@ import Product from '../product/product';
 
 const Products = ({product}) => {
     return ( 
-        <div>
+        <div className='flex flex-wrap'>
             {
                 product && product.map((e)=>(
                     <Product

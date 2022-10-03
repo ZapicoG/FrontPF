@@ -119,7 +119,7 @@ const NavBar = () => {
         </div>
       </nav>
       <Routes>
-        <Route path='/home*' element={<SearchBar />} />
+        <Route path='/home' element={<SearchBar />} />
       </Routes>
     </div>
   );

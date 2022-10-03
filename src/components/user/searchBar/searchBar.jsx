@@ -34,12 +34,12 @@ const onchange = (e) => {
           return p.name.match(regex)
       })
   }
-  console.log('matches', matches)
-    setSuggestions(matches)
+
+  setSuggestions(matches.slice(0,10))
+    setSearch(e)
   
-  setSearch(e)
 }
-console.log(search)
+console.log(suggestions)
 
 
   return (
@@ -57,18 +57,22 @@ console.log(search)
         class="bg-transparent py-2 text-gray-600 px-4 focus:outline-none w-full"
       />
     </form>
-      <ul class="bg-white border border-gray-100 w-full mt-2">
+    {
+      suggestions ? 
+      <ul class="absolute flex flex-col bg-white w-10/12 ">
         {
           suggestions && suggestions.map((suggestion, i) =>
-          <li class="pl-8 pr-2 py-1 border-b-2 border-gray-100 relative cursor-pointer hover:bg-yellow-50 hover:text-gray-900">
+          <li class="pl-8 pr-2 py-1 border-b-2 border-l-2 border-r-2 border-gray-100 relative cursor-pointer hover:bg-yellow-50 hover:text-gray-900">
             <svg class="absolute w-4 h-4 left-2 top-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
                 </svg>
-                <h onClick={() => onClick(suggestion.name)} key={i}>{suggestion.name}</h>
+                <p class='text-sm' onClick={() => onClick(suggestion.name)} key={i}>{suggestion.name}</p>
           </li>)
         }    
-      </ul>
+      </ul>:<div></div>
 
+    }
+      
     </div>
   );
 };
