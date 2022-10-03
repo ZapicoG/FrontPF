@@ -50,9 +50,9 @@ console.log(suggestions)
 
 
   return (
-    <div className='w-10/12'>
+    <div className='flex justify-center content-center w-full'>
 
-    <form className="bg-gray-100 w-full rounded border border-gray-200 flex items-center" onSubmit={e=>onSubmit(e)} autoComplete="off">
+    <form className="bg-gray-100 w-10/12 rounded border border-gray-200 flex items-center" onSubmit={e=>onSubmit(e)} autoComplete="off">
 
 
       <button className="py-3 px-6 bg-white text-gray-600 rounded-l border-r border-gray-200 hover:bg-gray-50 active:bg-gray-200 disabled:opacity-50 inline-flex items-center focus:outline-none">
@@ -73,7 +73,7 @@ console.log(suggestions)
     </form>
     {
       suggestions ? 
-      <ul class="absolute flex flex-col bg-white w-10/12 ">
+      <ul class="absolute flex flex-col bg-white w-10/12 z-10">
         {
           suggestions && suggestions.map((suggestion, i) =>
           <li class="pl-8 pr-2 py-1 border-b-2 border-l-2 border-r-2 border-gray-100 relative cursor-pointer hover:bg-yellow-50 hover:text-gray-900">

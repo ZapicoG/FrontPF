@@ -1,46 +1,39 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import axios from 'axios';
-import React, { useEffect, useState } from "react";
-import { useDispatch, userDispatch, useSelector } from "react-redux";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { getFavorites, userState } from "../../../redux/action";
 import authHeader from "../../../services/auth-header";
 import AuthService from "../../../services/auth.service";
-import IconButton from "@mui/material/IconButton";
-import HomeIcon from '@mui/icons-material/Home';
 
 
-
-
-// import { Link } from "react-router-dom";
-// import { Icon } from "@iconify/react";
-import SearchBar from "../searchBar/searchBar.jsx";
 import "./navBar.css";
 
 
 
 const NavBar = () => {
-  const navigate = useNavigate(); 
-  const userStatus = useSelector((state)=> state.loggedIn)
+  const navigate = useNavigate();
+  const userStatus = useSelector((state) => state.loggedIn)
   const favorites = useSelector(state => state.favorites)
   const dispatch = useDispatch();
 
-  useEffect( () => {
-      const tokenCheck =async ()=>{
-      const tokenStatus  =  await axios.get ('https://backpf-production.up.railway.app/token/tokenCheck', { headers: authHeader() });
-     /*  const tokenStatus  =  await axios.get ('http://localhost:3001/token/tokenCheck', { headers: authHeader() }); */
-      console.log('log de tokenStatus',tokenStatus.data);
+  useEffect(() => {
+    const tokenCheck = async () => {
+      const tokenStatus = await axios.get('https://backpf-production.up.railway.app/token/tokenCheck', { headers: authHeader() });
+      /*  const tokenStatus  =  await axios.get ('http://localhost:3001/token/tokenCheck', { headers: authHeader() }); */
+      console.log('log de tokenStatus', tokenStatus.data);
       dispatch(userState(tokenStatus.data))
-      }
-      tokenCheck();
-      
-      
-  }, [userStatus,dispatch]);
+    }
+    tokenCheck();
+
+
+  }, [userStatus, dispatch]);
 
   const handleLogOut = () => {
     AuthService.logout();
     dispatch(userState(false));
-    
+
   };
 
 
@@ -51,7 +44,7 @@ const NavBar = () => {
 
   React.useEffect(() => {
     dispatch(getFavorites(localStorage.userName))
-  },[])
+  }, [dispatch])
 
 
 
@@ -59,17 +52,6 @@ const NavBar = () => {
 
   return (
     <div className="box">
-  
-                {/* <div className='prfile'>
-                    <Link to="/sign-in" className='link_nav'>
-                        <h4>Sign In</h4>
-                    </Link>
-                    <h4 color='link_nav'>/</h4>
-                    <Link to="/log-in" className='link_nav'>
-                        <h4>Log In</h4>
-                    </Link>
-                </div>
-             */}
       <nav
         className="relative w-full flex flex-wrap items-center justify-between py-3 bg-gray-900 text-gray-200 shadow-lg navbar navbar-expand-lg navbar-light"
       >
@@ -102,19 +84,17 @@ const NavBar = () => {
           <div className="collapse navbar-collapse flex-grow items-center" id="navbarSupportedContent1">
             <Link to={'/'} className="text-xl text-white pr-2 font-semibold" href="#!">Techno Trade</Link>
             <ul className="navbar-nav flex flex-col pl-0 list-style-none mr-auto">
-              
+
               <li className="nav-item p-2">
                 <Link to={'/home'} className="nav-link text-white" href="#!">
-                  <IconButton >
-                    <HomeIcon fontSize="medium" color='primary'/>
-                  </IconButton>
+                  Inicio
                 </Link>
               </li>
 
               <li class="nav-item p-2">
-                <Link to={'/createProduct'} class="nav-link text-white" href="#!">Crear Producto</Link>
+                <Link className="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0" to={'/createProduct'} >Vender</Link>
               </li>
-              
+
               <li className="nav-item p-2">
                 <Link to={'/about'}
                   className="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0">
@@ -129,19 +109,8 @@ const NavBar = () => {
                 </Link>
               </li>
 
-             <li className="nav-item p-2">
-              { userStatus ? (
-                <button onClick={()=>handleLogOut()} className="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0"  >
-                Cerrar sesión
-              </button>
-              ): (
-                <button onClick={()=>handleLogIn()} className="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0"  >
-                Ingresar
-              </button>
-              )
-              
-            }
-            </li>
+              <li className="nav-item p-2">
+              </li>
             </ul>
           </div>
           <div className="flex items-center relative">
@@ -151,51 +120,57 @@ const NavBar = () => {
               </svg>
             </Link>
             {
-             userStatus && (<div className="flex items-center relative mr-5">
-              <Link to={'/favorites'} className="hover:text-gray-200">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-              </Link>
-            </div>)
+              userStatus && (<div className="flex items-center relative mr-5">
+                <Link to={'/favorites'} className="hover:text-gray-200">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </Link>
+              </div>)
             }
-            <div className="dropdown relative mr-5">
-              <a
-                className="dropdown-toggle flex items-center hidden-arrow"
-                href="#"
-                id="dropdownMenuButton2"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img
-                  src="https://mdbootstrap.com/img/new/avatars/2.jpg"
-                  className="rounded-full h-8 w-8"
-                  alt=""
-                  loading="lazy"
-                />
-              </a>
-              <ul
-                className="dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none left-auto right-0"
-                aria-labelledby="dropdownMenuButton2"
-              >
-                <li>
-                  <Link to='/profile'
-                    className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100">
-                    Profile
-                  </Link>
-                </li>
-                <li>
-                  <a className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100">
-                    Close
-                  </a>
-                </li>
-              </ul>
-            </div>
+            {userStatus ? (
+              <div className="dropdown relative mr-5">
+                <a
+                  className="dropdown-toggle flex items-center hidden-arrow"
+                  href="#"
+                  id="dropdownMenuButton2"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+                </a>
+                <ul
+                  className="dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none left-auto right-0"
+                  aria-labelledby="dropdownMenuButton2"
+                >
+                  <li>
+                    <Link to='/profile'
+                      className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100">
+                      Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <a onClick={() => handleLogOut()} className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100">
+                      Cerrar sesión
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <div>
+                <div class="flex space-x-2 justify-center">
+                  <button onClick={() => handleLogIn()} type="button" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Ingresar</button>
+                  <Link to={'/home/sign-in'} class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Crear Cuenta</Link>
+                </div>
+              </div>
+            )
+            }
           </div>
         </div>
       </nav>
-      
     </div>
   );
 };
